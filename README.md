@@ -94,6 +94,36 @@ $ docker compose up
 $ docker compose exec conference-app rails db:prepare
 ```
 
+### Generate sponsor visit URLs
+
+Sponsor visit URLs use an HMAC token so that a URL for another sponsor cannot be guessed from the sponsor key. Generate a dedicated secret before creating URLs for QR codes.
+
+```bash
+$ openssl rand -hex 32
+```
+
+Set the generated value in `.env`.
+
+```bash
+SPONSOR_VISIT_TOKEN_SECRET=YOUR_GENERATED_SECRET
+```
+
+Restart the application after changing the secret.
+
+```bash
+$ docker compose restart conference-app
+```
+
+Organizers can open `/admin/sponsor_qr_codes` from the `Sponsor QR Codes` item in the admin menu. Use `Download PNG` beside each sponsor to save one file, or `Download all as ZIP` to save every QR code at once. Files inside the ZIP are named with each sponsor key so the recipients can be identified. Only sponsors with a `Booth` label are included.
+
+Generate the sponsor names and stamp URLs for an event year with the following task:
+
+```bash
+$ docker compose exec conference-app bin/rails 'sponsors:stamp_urls[2026]'
+```
+
+The output can be used to create the QR codes placed at sponsor booths. Keep `SPONSOR_VISIT_TOKEN_SECRET` unchanged while the distributed QR codes are in use. The secret can be rotated for a new event year after the previous codes are no longer needed; rotating it invalidates all URLs generated with the old value.
+
 ## Acknowledgment
 ### Scout APM
 
