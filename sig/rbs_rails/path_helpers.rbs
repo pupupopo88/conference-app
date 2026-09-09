@@ -48,6 +48,7 @@ interface _RbsRailsPathHelpers
   def admin_talks_path: (*untyped) -> String
   def edit_admin_talk_path: (*untyped) -> String
   def admin_talk_path: (*untyped) -> String
+  def admin_sponsor_qr_codes_path: (*untyped) -> String
   def admin_announcements_path: (*untyped) -> String
   def new_admin_announcement_path: (*untyped) -> String
   def edit_admin_announcement_path: (*untyped) -> String
@@ -168,6 +169,7 @@ interface _RbsRailsPathHelpers
   def admin_talks_url: (*untyped) -> String
   def edit_admin_talk_url: (*untyped) -> String
   def admin_talk_url: (*untyped) -> String
+  def admin_sponsor_qr_codes_url: (*untyped) -> String
   def admin_announcements_url: (*untyped) -> String
   def new_admin_announcement_url: (*untyped) -> String
   def edit_admin_announcement_url: (*untyped) -> String
