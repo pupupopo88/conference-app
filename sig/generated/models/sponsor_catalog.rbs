@@ -1,0 +1,17 @@
+# Generated from app/models/sponsor_catalog.rb with RBS::Inline
+
+class SponsorCatalog
+  REQUIRED_ATTRIBUTES: untyped
+
+  LOGO_BASE_URL: untyped
+
+  def self.for_year: (untyped year) -> untyped
+
+  def self.find: (untyped year, untyped key) -> untyped
+
+  def self.with_booth: (untyped year) -> untyped
+
+  def self.logo_url: (untyped year, untyped sponsor) -> untyped
+
+  def self.data_for: (untyped year) -> untyped
+end
