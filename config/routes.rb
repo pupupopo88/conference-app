@@ -34,6 +34,7 @@ Rails.application.routes.draw do
 
   resources :talk_bookmarks, only: [:create, :destroy]
   resources :unread_announcements, only: [:destroy]
+  resources :sponsor_passports, only: [:show], param: :event_slug
 
   get "/about", to: "about#index"
 

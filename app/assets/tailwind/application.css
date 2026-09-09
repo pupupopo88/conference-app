@@ -121,6 +121,14 @@
     background-color: var(--color-alert-bg);
   }
 
+  .border-theme-primary-700 {
+    border-color: var(--color-primary-700);
+  }
+
+  .text-theme-primary-700 {
+    color: var(--color-primary-700);
+  }
+
   .background-2025-items {
     pointer-events: none;
     opacity: 0.6;

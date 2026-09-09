@@ -72,6 +72,25 @@ ja:
   profile_images:
     destroy:
       succeeded: "プロフィール画像を削除しました"
+  sponsor_passports:
+    community_stamp_count:
+      label: "みんなで集めたスタンプ"
+      count: "%{formatted_count}個"
+    show:
+      title: "スポンサースタンプラリー"
+      progress: "訪問進捗"
+      progress_count: "%{visited} / %{total} 社"
+      no_badge: "バッジ未獲得"
+      milestone_marker: "バッジ獲得ライン：%{count}社"
+      stamp_number: "%{number}個目に獲得したパスポートスタンプ"
+      empty: "スポンサーのQRコードを読み取って、スタンプを集めましょう。"
+      visited: "獲得済み ✓"
+      unvisited: "未訪問"
+      next_milestone: "次のバッジまで、あと%{count}社"
+      milestones:
+        hello_sponsors: "Hello, Sponsors!"
+        halfway: "Halfway There!"
+        complete: "All Complete!"
   profiles:
     edit:
       title: "プロフィール編集"
@@ -159,6 +178,7 @@ ja:
     header_nav:
       not_logged_in: "ログインしていません"
       profile: "Profile"
+      sponsor_passports: "Sponsor Passport"
       talks: "Talks"
       about: "About"
       announcements: "Announcements"

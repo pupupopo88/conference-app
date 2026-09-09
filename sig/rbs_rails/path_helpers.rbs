@@ -24,6 +24,7 @@ interface _RbsRailsPathHelpers
   def talk_bookmarks_path: (*untyped) -> String
   def talk_bookmark_path: (*untyped) -> String
   def unread_announcement_path: (*untyped) -> String
+  def sponsor_passport_path: (*untyped) -> String
   def about_path: (*untyped) -> String
   def live_stream_path: (*untyped) -> String
   def signages_path: (*untyped) -> String
@@ -140,6 +141,7 @@ interface _RbsRailsPathHelpers
   def talk_bookmarks_url: (*untyped) -> String
   def talk_bookmark_url: (*untyped) -> String
   def unread_announcement_url: (*untyped) -> String
+  def sponsor_passport_url: (*untyped) -> String
   def about_url: (*untyped) -> String
   def live_stream_url: (*untyped) -> String
   def signages_url: (*untyped) -> String
