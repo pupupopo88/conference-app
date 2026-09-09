@@ -1,0 +1,94 @@
+<% content_for(:page_title, t(".title")) %>
+
+<div class="w-full max-w-xl mx-auto px-4 pb-10 text-center">
+  <% if @progress.completed? %>
+    <p class="mb-2 text-3xl" aria-hidden="true">🎉</p>
+    <h1 class="text-2xl font-black text-theme-primary sm:text-3xl"><%= t(".complete_title") %></h1>
+    <p class="mt-2 text-sm font-semibold text-theme-primary"><%= t(".complete_message") %></p>
+  <% else %>
+    <h1 class="font-black text-theme-primary <%= @newly_visited ? "text-2xl sm:text-3xl passport-result-title--new" : "text-lg sm:text-xl" %>">
+      <%= @newly_visited ? t(".title") : t(".already_visited") %>
+    </h1>
+  <% end %>
+
+  <%= tag.div(
+        class: class_names("passport-stamp-stage", {"passport-stamp-stage--new" => @newly_visited}),
+        data: {new_stamp_celebration: @newly_visited || nil}
+      ) do %>
+    <% if @newly_visited %>
+      <div class="passport-stamp-burst" aria-hidden="true"></div>
+      <div class="passport-confetti" aria-hidden="true">
+        <% 12.times do %>
+          <span></span>
+        <% end %>
+      </div>
+      <span class="passport-stamp-new-label" aria-hidden="true">NEW!</span>
+    <% end %>
+
+    <div class="passport-stamp" aria-label="<%= t(".stamp_number", number: @visit_number) %>">
+      <span class="text-sm font-black tracking-widest" aria-hidden="true">PASSPORT</span>
+      <span class="text-5xl font-black leading-none" aria-hidden="true">#<%= @visit_number.to_s.rjust(2, "0") %></span>
+      <span class="text-xs font-bold" aria-hidden="true">KoR <%= @event.slug %></span>
+    </div>
+  <% end %>
+
+  <div>
+    <p class="text-xl font-black text-theme-primary sm:text-2xl"><%= @sponsor[:name] %></p>
+    <p class="mt-1 text-sm font-semibold text-theme-primary"><%= t(".plan", plan: @sponsor[:plan].capitalize) %></p>
+    <%= render "shared/sponsor_labels", sponsor: @sponsor %>
+  </div>
+
+  <section class="mt-6 rounded-xl bg-white p-4 text-gray-900 shadow-sm" aria-label="<%= t("sponsor_passports.show.progress") %>">
+    <div class="flex items-start justify-between gap-4">
+      <div class="text-left">
+        <p class="text-xs font-bold text-gray-500"><%= t("sponsor_passports.show.progress") %></p>
+        <p class="mt-1 text-2xl font-black" aria-label="<%= t("sponsor_passports.show.progress_count", visited: @progress.visited_count, total: @progress.total_count) %>">
+          <%= @progress.visited_count %> / <%= @progress.total_count %>
+        </p>
+      </div>
+      <div class="shrink-0 rounded-lg bg-gray-100 px-3 py-2 text-right <%= "community-stamp-count--updated" if @newly_visited %>">
+        <p class="text-xs font-bold text-gray-500"><%= t("sponsor_passports.community_stamp_count.label") %></p>
+        <p class="text-xl font-black" data-community-stamp-count>
+          <%= t("sponsor_passports.community_stamp_count.count", count: @passport.community_stamp_count, formatted_count: number_with_delimiter(@passport.community_stamp_count)) %>
+        </p>
+      </div>
+    </div>
+
+    <%= render "sponsor_passports/progress_bar", progress: @progress, height_class: "h-2" %>
+
+    <% if @progress.current_milestone || @progress.next_milestone %>
+      <div class="mt-3 flex flex-wrap items-center gap-2 border-t border-gray-200 pt-3 text-left">
+        <% if @progress.current_milestone %>
+          <p class="rounded-full bg-theme-primary-700 px-3 py-1 text-xs font-black text-white">
+            <%= t("sponsor_passports.show.milestones.#{@progress.current_milestone[:key]}") %>
+          </p>
+        <% end %>
+        <% if @progress.next_milestone %>
+          <p class="text-xs font-semibold text-gray-600">
+            <%= t("sponsor_passports.show.next_milestone", count: @progress.remaining_to_next) %>
+          </p>
+        <% end %>
+      </div>
+    <% end %>
+  </section>
+
+  <% if @passport.next_sponsors.any? %>
+    <section class="mt-6 text-left" aria-labelledby="next-sponsors-title">
+      <h2 id="next-sponsors-title" class="text-xl font-black text-theme-primary"><%= t(".next_sponsors_title") %></h2>
+      <ul class="mt-3 divide-y divide-gray-200 overflow-hidden rounded-xl bg-white shadow-sm">
+        <% @passport.next_sponsors.each do |sponsor| %>
+          <li class="px-4 py-3" data-next-sponsor="<%= sponsor[:key] %>">
+            <p class="font-bold text-gray-900"><%= sponsor[:name] %></p>
+            <p class="text-sm text-gray-600"><%= t(".plan", plan: sponsor[:plan].capitalize) %></p>
+            <%= render "shared/sponsor_labels", sponsor: sponsor, class_name: "mt-2 flex flex-wrap gap-2" %>
+          </li>
+        <% end %>
+      </ul>
+    </section>
+  <% end %>
+
+  <div class="mt-6 flex flex-col items-center gap-4">
+    <%= link_to t(".view_stamp_card"), sponsor_passport_path(event_slug: @event.slug), class: "inline-flex w-full items-center justify-center rounded-lg bg-theme-primary-700 px-5 py-3 font-bold text-white shadow-sm sm:w-auto" %>
+    <%= link_to t(".back_to_profile"), profiles_path, class: "text-sm font-bold text-theme-primary underline underline-offset-4" %>
+  </div>
+</div>

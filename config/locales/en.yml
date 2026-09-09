@@ -73,6 +73,21 @@ en:
   profile_images:
     destroy:
       succeeded: "Profile image deleted"
+  sponsor_stamps:
+    new:
+      plan: "%{plan} Sponsor"
+      collect_stamp: "Collect Stamp"
+      collecting_stamp: "Stamping your passport…"
+    show:
+      title: "Stamp Collected!"
+      already_visited: "You already collected this stamp"
+      complete_title: "All Sponsors Completed!"
+      complete_message: "You visited every sponsor booth. Congratulations!"
+      plan: "%{plan} Sponsor"
+      stamp_number: "Passport stamp number %{number}"
+      next_sponsors_title: "Where to next?"
+      view_stamp_card: "View Stamp Card"
+      back_to_profile: "Back to Profile"
   sponsor_passports:
     community_stamp_count:
       label: "Collected together"
