@@ -1,0 +1,4 @@
+# Action Pack's generated RBS does not include ActionController::Redirecting#url_from.
+class ActionController::Base
+  def url_from: (String? location) -> String?
+end

@@ -27,6 +27,25 @@ RSpec.describe "AuthCallback", type: :request do
           expect(response).to redirect_to(setting_path)
           expect(session[:user_id]).to eq user.id
         end
+
+        it "redirects to the internal return location" do
+          return_to = "/sponsor_passports/2026/stamps/new?code=stamp-code"
+          query = {return_to:}.to_query
+
+          post "/auth/github?#{query}"
+          follow_redirect!
+
+          expect(response).to redirect_to(return_to)
+        end
+
+        it "uses the default location when return_to is external" do
+          query = {return_to: "https://example.com/path"}.to_query
+
+          post "/auth/github?#{query}"
+          follow_redirect!
+
+          expect(response).to redirect_to(setting_path)
+        end
       end
 
       context "create new user" do

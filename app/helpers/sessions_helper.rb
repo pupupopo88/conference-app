@@ -5,6 +5,13 @@ module SessionsHelper
 
   # @rbs @current_user: User
 
+  def github_auth_path(return_to:)
+    return "/auth/github" if return_to.blank?
+
+    query = {return_to:}.to_query
+    "/auth/github?#{query}"
+  end
+
   # @rbs return: User
   def current_user!
     raise UnauthorizedError unless session[:user_id]
