@@ -93,6 +93,8 @@ ja:
       count: "%{formatted_count}個"
     show:
       title: "スポンサースタンプラリー"
+      book_description: "ブースをめぐって、出会いを一冊に。"
+      book_complete: "すべてのブースのスタンプが揃いました。ご参加ありがとうございます！"
       progress: "訪問進捗"
       progress_count: "%{visited} / %{total} 社"
       no_badge: "バッジ未獲得"

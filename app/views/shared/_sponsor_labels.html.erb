@@ -2,9 +2,9 @@
 <% plain = local_assigns.fetch(:plain, false) %>
 
 <% if labels.any? %>
-  <ul class="<%= local_assigns.fetch(:class_name, plain ? "mt-1 space-y-1" : "mt-3 flex flex-wrap justify-center gap-2") %>">
+  <ul class="<%= local_assigns.fetch(:class_name, plain ? "mt-2 flex flex-wrap gap-1.5" : "mt-3 flex flex-wrap justify-center gap-2") %>">
     <% labels.each do |label| %>
-      <li class="<%= plain ? "text-xs font-semibold leading-snug text-gray-500" : "rounded-full border border-gray-200 bg-gray-100 px-2.5 py-1 text-xs font-semibold leading-none text-gray-700" %>" data-sponsor-label>
+      <li class="<%= plain ? "rounded-sm bg-stone-100 px-2 py-1 text-xs font-semibold leading-relaxed text-stone-700" : "rounded-full border border-gray-200 bg-gray-100 px-2.5 py-1 text-xs font-semibold leading-relaxed text-gray-700" %>" data-sponsor-label>
         <%= label[:name] %>
       </li>
     <% end %>

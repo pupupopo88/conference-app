@@ -53,7 +53,7 @@ RSpec.describe "Sponsor passports", type: :request do
       expect(sponsor_labels).to include("Print sticker sponsor", "Scholarship sponsor")
       expect(sponsor_labels).not_to include("Booth")
       passport_label = document.at_css("[data-sponsor-plan='ruby'] [data-sponsor-label]")
-      expect(passport_label["class"]).to include("text-gray-500")
+      expect(passport_label["class"]).to include("text-stone-700", "bg-stone-100", "leading-relaxed")
       expect(passport_label["class"]).not_to include("rounded-full", "bg-gray-100")
       menu_link = Nokogiri::HTML(response.body).at_css("nav a[href='#{sponsor_passport_path(event_slug: event.slug)}']")
       expect(menu_link.text.strip).to eq("Sponsor Passport")
@@ -96,6 +96,7 @@ RSpec.describe "Sponsor passports", type: :request do
 
       expect(response).to have_http_status(:success)
       expect(response.body).to include("0 / 22 社")
+      expect(Nokogiri::HTML(response.body).at_css("[data-passport-complete]")).to be_nil
       expect(response.body).to include("スポンサーのQRコードを読み取って、スタンプを集めましょう")
       expect(response.body).to include("次のバッジまで、あと5社")
       expect(response.body).to include("バッジ未獲得")
@@ -117,6 +118,21 @@ RSpec.describe "Sponsor passports", type: :request do
       expect(response.body).to include("Visit 5 more booths to unlock your next badge")
       expect(response.body).not_to include("Hello, Sponsors!")
       expect(document.at_css("[data-community-stamp-count]").text.strip).to eq("0 stamps")
+    end
+
+    it "celebrates a completed passport" do
+      sign_in(user)
+      SponsorCatalog.with_booth(event.slug).each do |sponsor|
+        FactoryBot.create(:sponsor_visit, user:, event:, sponsor_key: sponsor[:key])
+      end
+
+      get sponsor_passport_path(event_slug: event.slug)
+
+      document = Nokogiri::HTML(response.body)
+      celebration = document.at_css("[data-passport-complete]")
+      expect(celebration.text).to include("All Complete!", "すべてのブースのスタンプが揃いました")
+      expect(document.at_css("[role='progressbar']")["aria-valuenow"]).to eq("22")
+      expect(response.body).not_to include("次のバッジまで")
     end
 
     it "returns not found for a past event" do

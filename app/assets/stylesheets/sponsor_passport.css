@@ -280,3 +280,184 @@
     animation: none;
   }
 }
+
+.passport-page {
+  --passport-ink: #852d36;
+  --passport-paper: #fcf8ef;
+  --passport-line: #ded5c5;
+}
+
+.passport-cover {
+  padding: 24px;
+  border-top: 5px solid var(--passport-ink);
+  border-radius: 6px 6px 0 0;
+  color: #302d28;
+  background: var(--passport-paper);
+}
+
+.passport-eyebrow,
+.passport-year,
+.passport-book-footer {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.passport-eyebrow {
+  color: var(--passport-ink);
+}
+
+.passport-year {
+  padding: 4px 8px;
+  border: 1px solid var(--passport-line);
+  border-radius: 3px;
+}
+
+.passport-muted {
+  color: #706758;
+}
+
+.passport-progress-count {
+  margin-top: 4px;
+  color: var(--passport-ink);
+  font-size: 44px;
+  font-weight: 800;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.passport-progress-total {
+  color: #706758;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.passport-next-goal,
+.passport-complete {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--passport-line);
+}
+
+.passport-complete {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--passport-ink);
+}
+
+.passport-complete-seal {
+  display: grid;
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+  place-items: center;
+  border: 4px double currentColor;
+  border-radius: 50%;
+  font-size: 24px;
+}
+
+.passport-book {
+  padding: 0 24px 20px;
+  border-radius: 0 0 6px 6px;
+  color: #302d28;
+  background: var(--passport-paper);
+}
+
+.passport-book-section {
+  padding-top: 24px;
+  padding-bottom: 24px;
+  border-top: 1px dashed var(--passport-line);
+}
+
+.passport-section-count {
+  color: #706758;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.passport-entry {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  padding: 14px 12px 10px;
+  border: 1px solid var(--passport-line);
+  border-radius: 4px;
+  background: #fff;
+}
+
+.passport-entry--visited {
+  border-color: #ba8e8c;
+}
+
+.passport-company-name {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.passport-entry-stamp {
+  display: flex;
+  min-height: 94px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12px;
+  border-top: 1px solid #f0ebe2;
+}
+
+.passport-book-stamp {
+  display: flex;
+  width: 76px;
+  height: 76px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 4px double var(--passport-ink);
+  border-radius: 50%;
+  color: var(--passport-ink);
+  transform: rotate(-7deg);
+}
+
+.passport-book-stamp-caption {
+  font-size: 8px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.08em;
+}
+
+.passport-book-stamp-number {
+  font-size: 25px;
+  font-weight: 800;
+  line-height: 1.15;
+  font-variant-numeric: tabular-nums;
+}
+
+.passport-book-stamp--empty {
+  border: 1px dashed #b6ad9e;
+  color: #706758;
+  transform: none;
+}
+
+.passport-book-footer {
+  padding-top: 16px;
+  border-top: 1px dashed var(--passport-line);
+  color: #706758;
+  text-align: center;
+}
+
+@media (max-width: 380px) {
+  .passport-cover {
+    padding: 20px 16px;
+  }
+
+  .passport-book {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .passport-entry {
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+}

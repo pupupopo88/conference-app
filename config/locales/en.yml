@@ -96,6 +96,8 @@ en:
         other: "%{formatted_count} stamps"
     show:
       title: "Sponsor Passport"
+      book_description: "Explore the booths. Collect the encounters."
+      book_complete: "Every booth, one completed passport. Thanks for exploring!"
       progress: "Visit progress"
       progress_count: "%{visited} / %{total} sponsors"
       no_badge: "No badges yet"

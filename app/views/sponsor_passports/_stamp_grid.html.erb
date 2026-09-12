@@ -1,34 +1,39 @@
-<div class="space-y-8">
+<div class="passport-book">
   <% passport.sponsors.group_by { |sponsor| sponsor[:plan] }.each do |plan, plan_sponsors| %>
-    <section aria-labelledby="sponsor-plan-<%= plan %>" data-sponsor-plan="<%= plan %>">
-      <div class="mb-3 border-b border-theme-primary/20 pb-2 text-theme-primary">
-        <h2 id="sponsor-plan-<%= plan %>" class="text-lg font-black"><%= plan.to_s.capitalize %> Sponsors</h2>
+    <section class="passport-book-section" aria-labelledby="sponsor-plan-<%= plan %>" data-sponsor-plan="<%= plan %>">
+      <div class="mb-4 flex items-center justify-between gap-3">
+        <h2 id="sponsor-plan-<%= plan %>" class="text-base font-bold"><%= plan.to_s.capitalize %> Sponsors</h2>
+        <span class="passport-section-count"><%= plan_sponsors.size.to_s.rjust(2, "0") %></span>
       </div>
 
-      <ul class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+      <ul class="grid grid-cols-2 gap-3">
         <% plan_sponsors.each do |sponsor| %>
           <% visited = passport.visited?(sponsor[:key]) %>
-          <li class="rounded-xl border p-3 shadow-sm <%= visited ? "bg-white border-theme-primary" : "bg-gray-100 border-gray-200" %>">
-            <div class="flex items-center gap-3">
+          <li class="<%= class_names("passport-entry", "passport-entry--visited" => visited) %>">
+            <div class="grow">
+              <p class="passport-company-name"><%= sponsor[:name] %></p>
+              <%= render "shared/sponsor_labels", sponsor: sponsor, plain: true %>
+            </div>
+
+            <div class="passport-entry-stamp">
               <% if visited %>
                 <% stamp_number = passport.stamp_number_for(sponsor[:key]) %>
-                <div class="flex h-20 w-20 shrink-0 -rotate-3 flex-col items-center justify-center rounded-full border-4 border-double border-theme-primary-700 bg-white text-theme-primary-700" aria-label="<%= t("sponsor_passports.show.visited") %>. <%= t("sponsor_passports.show.stamp_number", number: stamp_number) %>">
-                  <span class="text-[0.625rem] font-black tracking-widest" aria-hidden="true">PASSPORT</span>
-                  <span class="text-2xl font-black leading-none" aria-hidden="true">#<%= stamp_number.to_s.rjust(2, "0") %></span>
-                  <span class="text-[0.625rem] font-bold" aria-hidden="true">KoR <%= passport.event.slug %></span>
+                <div class="passport-book-stamp" aria-label="<%= t("sponsor_passports.show.visited") %>. <%= t("sponsor_passports.show.stamp_number", number: stamp_number) %>">
+                  <span class="passport-book-stamp-caption" aria-hidden="true">VISITED</span>
+                  <span class="passport-book-stamp-number" aria-hidden="true">#<%= stamp_number.to_s.rjust(2, "0") %></span>
+                  <span class="passport-book-stamp-caption" aria-hidden="true">KoR <%= passport.event.slug %></span>
                 </div>
               <% else %>
-                <div class="flex h-20 w-20 shrink-0 items-center justify-center rounded-full border-2 border-dashed border-gray-300 text-2xl font-bold text-gray-400" aria-label="<%= t("sponsor_passports.show.unvisited") %>">?</div>
+                <div class="passport-book-stamp passport-book-stamp--empty" aria-label="<%= t("sponsor_passports.show.unvisited") %>">
+                  <span class="text-xl" aria-hidden="true">—</span>
+                  <span class="passport-book-stamp-caption" aria-hidden="true">STAMP</span>
+                </div>
               <% end %>
-
-              <div class="min-w-0 grow">
-                <p class="text-lg font-bold text-gray-900"><%= sponsor[:name] %></p>
-                <%= render "shared/sponsor_labels", sponsor: sponsor, plain: true %>
-              </div>
             </div>
           </li>
         <% end %>
       </ul>
     </section>
   <% end %>
+  <p class="passport-book-footer">KAIGI ON RAILS / <%= passport.event.slug %></p>
 </div>
