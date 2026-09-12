@@ -75,6 +75,8 @@ en:
       succeeded: "Profile image deleted"
   sponsor_stamps:
     new:
+      description: "Add this booth visit to your passport."
+      back_to_passport: "Back to your passport"
       plan: "%{plan} Sponsor"
       collect_stamp: "Collect Stamp"
       collecting_stamp: "Stamping your passport…"

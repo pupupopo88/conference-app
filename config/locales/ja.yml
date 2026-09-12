@@ -74,6 +74,8 @@ ja:
       succeeded: "プロフィール画像を削除しました"
   sponsor_stamps:
     new:
+      description: "訪問の記念に、スタンプをひとつ。"
+      back_to_passport: "スタンプ帳に戻る"
       plan: "%{plan} Sponsor"
       collect_stamp: "スタンプを獲得する"
       collecting_stamp: "スタンプを押しています…"

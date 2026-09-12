@@ -1,27 +1,35 @@
 <% content_for(:page_title, @sponsor[:name]) %>
 
-<div class="w-full max-w-xl mx-auto px-4 py-8 text-center">
-  <section class="overflow-hidden rounded-2xl bg-white shadow-sm">
-    <div class="bg-gray-100 px-6 py-10" data-sponsor-logo-stage>
+<div class="passport-page w-full max-w-xl mx-auto px-4 py-6 text-center">
+  <section class="passport-cover passport-collection" aria-labelledby="sponsor-name">
+    <div class="mb-5 flex items-center justify-between gap-3">
+      <p class="passport-eyebrow">SPONSOR PASSPORT</p>
+      <span class="passport-year"><%= @event.slug %></span>
+    </div>
+
+    <div class="passport-logo-panel" data-sponsor-logo-stage>
       <%= image_tag @sponsor_logo_url,
             alt: "",
-            class: "mx-auto h-36 w-36 border border-gray-300 bg-white object-contain shadow-sm",
+            class: "mx-auto block h-auto w-full bg-white object-contain",
             data: {sponsor_logo: true} %>
     </div>
 
-    <div class="px-6 py-7 sm:px-8">
-      <h1 class="text-2xl font-black text-gray-900"><%= @sponsor[:name] %></h1>
-      <p class="mt-1 text-gray-600"><%= t(".plan", plan: @sponsor[:plan].capitalize) %></p>
+    <div class="mt-6">
+      <p class="passport-sponsor-plan"><%= t(".plan", plan: @sponsor[:plan].capitalize) %></p>
+      <h1 id="sponsor-name" class="mt-2 break-words text-2xl font-bold"><%= @sponsor[:name] %></h1>
       <%= render "shared/sponsor_labels", sponsor: @sponsor %>
+    </div>
 
+    <div class="passport-collection-action">
+      <p class="mb-5 text-balance text-sm leading-relaxed passport-muted"><%= t(".description") %></p>
       <%= button_to sponsor_passport_stamps_path(@event.slug),
             params: {code: params[:code]},
-            class: "inline-flex w-full items-center justify-center rounded-lg bg-theme-primary-700 px-5 py-3 font-bold text-white shadow-sm disabled:cursor-wait disabled:opacity-70",
-            form: {class: "mt-7 w-full"},
+            class: "passport-collect-button inline-flex w-full items-center justify-center rounded-lg bg-theme-primary-700 px-5 py-4 font-bold text-white disabled:cursor-wait disabled:opacity-70",
             data: {turbo_submits_with: t(".collecting_stamp")},
             aria: {live: "polite"} do %>
         <%= t(".collect_stamp") %>
       <% end %>
+      <%= link_to t(".back_to_passport"), sponsor_passport_path(event_slug: @event.slug), class: "mt-4 inline-block py-2 text-sm underline underline-offset-4 passport-muted" %>
     </div>
   </section>
 </div>

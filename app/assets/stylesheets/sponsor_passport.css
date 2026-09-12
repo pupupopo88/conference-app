@@ -461,3 +461,43 @@
     padding-left: 8px;
   }
 }
+
+.passport-collection {
+  border-radius: 6px;
+}
+
+.passport-logo-panel {
+  width: 216px;
+  max-width: 100%;
+  margin-inline: auto;
+  border: 1px solid var(--passport-line);
+  border-radius: 4px;
+  background: #fff;
+}
+
+.passport-sponsor-plan {
+  color: var(--passport-ink);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.passport-collection-action {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px dashed var(--passport-line);
+}
+
+.passport-collect-button {
+  background: var(--passport-ink);
+  cursor: pointer;
+}
+
+.passport-collect-button:hover:not(:disabled) {
+  background: #69212a;
+}
+
+.passport-collect-button:focus-visible {
+  outline: 2px solid var(--passport-ink);
+  outline-offset: 4px;
+}
