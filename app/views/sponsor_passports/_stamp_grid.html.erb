@@ -10,10 +10,11 @@
         <% plan_sponsors.each do |sponsor| %>
           <% visited = passport.visited?(sponsor[:key]) %>
           <li class="<%= class_names("passport-entry", "passport-entry--visited" => visited) %>">
-            <div class="grow">
-              <p class="passport-company-name"><%= sponsor[:name] %></p>
-              <%= render "shared/sponsor_labels", sponsor: sponsor, plain: true %>
-            </div>
+            <%= image_tag SponsorCatalog.logo_url(passport.event.slug, sponsor),
+                  alt: sponsor[:name],
+                  class: "passport-entry-logo",
+                  width: 120,
+                  height: 120 %>
 
             <div class="passport-entry-stamp">
               <% if visited %>

@@ -390,26 +390,29 @@
   border-color: #ba8e8c;
 }
 
-.passport-company-name {
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 1.5;
-  overflow-wrap: anywhere;
+.passport-entry-logo {
+  display: block;
+  width: 120px;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  margin: 0 auto 10px;
+  object-fit: contain;
 }
 
 .passport-entry-stamp {
   display: flex;
-  min-height: 94px;
+  min-height: 82px;
   align-items: center;
   justify-content: center;
-  margin-top: 12px;
+  margin-top: 2px;
   border-top: 1px solid #f0ebe2;
 }
 
 .passport-book-stamp {
   display: flex;
-  width: 76px;
-  height: 76px;
+  width: 68px;
+  height: 68px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -427,7 +430,7 @@
 }
 
 .passport-book-stamp-number {
-  font-size: 25px;
+  font-size: 24px;
   font-weight: 800;
   line-height: 1.15;
   font-variant-numeric: tabular-nums;

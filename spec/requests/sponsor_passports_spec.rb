@@ -49,12 +49,12 @@ RSpec.describe "Sponsor passports", type: :request do
       expect(document.css("[data-sponsor-plan]").pluck("data-sponsor-plan")).to eq(["ruby", "gold"])
       expect(document.at_css("[data-sponsor-plan='ruby'] h2").text.strip).to eq("Ruby Sponsors")
       expect(document.at_css("[data-sponsor-plan='gold'] h2").text.strip).to eq("Gold Sponsors")
-      sponsor_labels = Nokogiri::HTML(response.body).css("[data-sponsor-label]").map { |label| label.text.strip }
-      expect(sponsor_labels).to include("Print sticker sponsor", "Scholarship sponsor")
-      expect(sponsor_labels).not_to include("Booth")
-      passport_label = document.at_css("[data-sponsor-plan='ruby'] [data-sponsor-label]")
-      expect(passport_label["class"]).to include("text-stone-700", "bg-stone-100", "leading-relaxed")
-      expect(passport_label["class"]).not_to include("rounded-full", "bg-gray-100")
+      logos = document.css("[data-sponsor-plan] img")
+      sponsors = SponsorCatalog.with_booth(event.slug)
+      expect(logos.pluck("alt")).to eq(sponsors.pluck(:name))
+      expect(logos.pluck("src")).to eq(sponsors.map { |sponsor| SponsorCatalog.logo_url(event.slug, sponsor) })
+      expect(document.css("[data-sponsor-plan] [data-sponsor-label]")).to be_empty
+      expect(document.css("[data-sponsor-plan]").text).not_to include("SmartBank, Inc.", "Print sticker sponsor")
       menu_link = Nokogiri::HTML(response.body).at_css("nav a[href='#{sponsor_passport_path(event_slug: event.slug)}']")
       expect(menu_link.text.strip).to eq("Sponsor Passport")
     end
