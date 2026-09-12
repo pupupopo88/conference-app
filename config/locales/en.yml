@@ -88,7 +88,7 @@ en:
       plan: "%{plan} Sponsor"
       stamp_number: "Passport stamp number %{number}"
       next_sponsors_title: "Where to next?"
-      view_stamp_card: "View Stamp Card"
+      view_stamp_card: "View Passport"
       back_to_profile: "Back to Profile"
   sponsor_passports:
     community_stamp_count:

@@ -207,7 +207,7 @@ RSpec.describe "Sponsor passports", type: :request do
 
       sponsor_labels = Nokogiri::HTML(response.body).css("[data-sponsor-label]").map { |label| label.text.strip }
       expect(sponsor_labels).to eq(["Print sticker sponsor"])
-      expect(Nokogiri::HTML(response.body).at_css("[data-sponsor-label]")["class"]).to include("rounded-full", "bg-gray-100")
+      expect(Nokogiri::HTML(response.body).at_css("[data-sponsor-label]")["class"]).to include("rounded-full", "bg-stone-100")
     end
 
     it "redirects a logged-out user to login" do

@@ -10,23 +10,8 @@
     <h1 class="text-xl font-bold sm:text-2xl"><%= t(".title") %></h1>
     <p class="mt-2 text-sm passport-muted"><%= t(".book_description") %></p>
 
-    <section class="mt-6" aria-labelledby="sponsor-visit-progress-title">
-      <div class="flex items-end justify-between gap-4">
-        <div>
-          <p id="sponsor-visit-progress-title" class="text-xs font-bold passport-muted"><%= t(".progress") %></p>
-          <p class="passport-progress-count" aria-label="<%= t(".progress_count", visited: progress.visited_count, total: progress.total_count) %>">
-            <span><%= progress.visited_count %></span><span class="passport-progress-total"> / <%= progress.total_count %></span>
-          </p>
-        </div>
-        <div class="pb-1 text-right">
-          <p class="text-xs passport-muted"><%= t("sponsor_passports.community_stamp_count.label") %></p>
-          <p class="mt-1 text-lg font-bold" data-community-stamp-count>
-            <%= t("sponsor_passports.community_stamp_count.count", count: @passport.community_stamp_count, formatted_count: number_with_delimiter(@passport.community_stamp_count)) %>
-          </p>
-        </div>
-      </div>
-
-      <%= render "sponsor_passports/progress_bar", progress: progress, height_class: "h-3" %>
+    <section class="mt-6" aria-label="<%= t(".progress") %>">
+      <%= render "sponsor_passports/progress", passport: @passport %>
 
       <% if progress.total_count.positive? && progress.completed? %>
         <div class="passport-complete" data-passport-complete>

@@ -1,0 +1,16 @@
+<div class="flex items-end justify-between gap-4">
+  <div>
+    <p class="text-xs font-bold passport-muted"><%= t("sponsor_passports.show.progress") %></p>
+    <p class="passport-progress-count" aria-label="<%= t("sponsor_passports.show.progress_count", visited: passport.progress.visited_count, total: passport.progress.total_count) %>">
+      <span><%= passport.progress.visited_count %></span><span class="passport-progress-total"> / <%= passport.progress.total_count %></span>
+    </p>
+  </div>
+  <div class="<%= class_names("pb-1 text-right", "community-stamp-count--updated" => local_assigns.fetch(:updated, false)) %>">
+    <p class="text-xs passport-muted"><%= t("sponsor_passports.community_stamp_count.label") %></p>
+    <p class="mt-1 text-lg font-bold" data-community-stamp-count>
+      <%= t("sponsor_passports.community_stamp_count.count", count: passport.community_stamp_count, formatted_count: number_with_delimiter(passport.community_stamp_count)) %>
+    </p>
+  </div>
+</div>
+
+<%= render "sponsor_passports/progress_bar", progress: passport.progress, height_class: "h-3" %>

@@ -17,9 +17,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 8px double var(--color-primary-700, #b91c1c);
+  border: 8px double var(--passport-ink, #852d36);
   border-radius: 50%;
-  color: var(--color-primary-700, #b91c1c);
+  color: var(--passport-ink, #852d36);
   background: rgb(255 255 255);
   box-shadow: 0 10px 24px rgb(127 29 29 / 18%);
   transform: rotate(-6deg);
@@ -40,7 +40,7 @@
   z-index: 1;
   width: 144px;
   height: 144px;
-  border: 5px solid var(--color-primary-600, #dc2626);
+  border: 5px solid var(--passport-ink, #852d36);
   border-radius: 50%;
   opacity: 0;
 }
@@ -65,7 +65,7 @@
 
 .passport-stamp-burst::after {
   inset: -5px;
-  border-color: rgb(234 179 8);
+  border-color: #bc955a;
   animation: passport-burst 900ms 640ms ease-out both;
 }
 
@@ -77,8 +77,8 @@
   padding: 5px 10px;
   border: 2px solid rgb(255 255 255);
   border-radius: 999px;
-  color: rgb(17 24 39);
-  background: rgb(250 204 21);
+  color: #503c24;
+  background: #e5c58c;
   box-shadow: 0 5px 12px rgb(17 24 39 / 22%);
   font-size: 12px;
   font-weight: 900;
@@ -105,7 +105,7 @@
   width: 8px;
   height: 14px;
   border-radius: 2px;
-  background: var(--color-primary-600, #dc2626);
+  background: var(--passport-ink, #852d36);
   opacity: 0;
   animation: passport-confetti-fly 1100ms 360ms ease-out both;
 }
@@ -114,11 +114,11 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: rgb(250 204 21);
+  background: #e5c58c;
 }
 
 .passport-confetti span:nth-child(3n) {
-  background: rgb(34 127 187);
+  background: #7c958b;
 }
 
 .passport-confetti span:nth-child(1) {
@@ -263,7 +263,7 @@
 
 @keyframes community-stamp-count-pulse {
   50% {
-    box-shadow: 0 0 0 5px rgb(250 204 21 / 55%);
+    box-shadow: 0 0 0 5px rgb(188 149 90 / 25%);
     transform: scale(1.025);
   }
 }
@@ -462,7 +462,7 @@
   }
 }
 
-.passport-collection {
+.passport-sheet {
   border-radius: 6px;
 }
 
@@ -500,4 +500,16 @@
 .passport-collect-button:focus-visible {
   outline: 2px solid var(--passport-ink);
   outline-offset: 4px;
+}
+
+.passport-progress-track {
+  background: #e9e1d4;
+}
+
+.passport-progress-fill {
+  background: var(--passport-ink);
+}
+
+.passport-achievement {
+  color: var(--passport-ink);
 }
